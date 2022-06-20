@@ -1,14 +1,15 @@
-------------------------------------------------------------------------
-Dies ist die README-Datei des Projekts. Hier sollten Sie Ihr Projekt
-beschreiben.
-Erzählen Sie dem Leser (jemand, der nichts über dieses Projekt weiss),
-alles, was er/sie wissen muss. Üblicherweise sollte der Kommentar 
-zumindest die folgenden Angaben umfassen:
-------------------------------------------------------------------------
-
-PROJEKTBEZEICHNUNG:
-PROJEKTZWECK:
-VERSION oder DATUM:
-WIE IST DAS PROJEKT ZU STARTEN:
-AUTOR(EN):
-BENUTZERHINWEISE:
+Github.com:
+    - Settings
+    - Developer Settings
+    - acces token
+    - generate
+    - repo & Admin:org
+    - copy token
+    
+BlueJ:
+    - Werkzeuge
+    - Teamarbeit
+    - Aktualisierung holen bzw Arbeitskopie erstellen
+    - fill everything out
+    - URI = https://github.com/Informatik2022Java/BJ-EUROPLE.git
+    - pswrd = your copied acces token
