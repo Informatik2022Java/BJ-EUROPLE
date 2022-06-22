@@ -1,33 +1,26 @@
-
-/**
- * Beschreiben Sie hier die Klasse End.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- */
-public class End
+public class End extends ListElement
 {
-    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
-    private int x;
-
-    /**
-     * Konstruktor für Objekte der Klasse End
-     */
-    public End()
+    public ListElement add(Dataelement data)
     {
-        // Instanzvariable initialisieren
-        x = 0;
+        return new Node(this, data);
     }
-
-    /**
-     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
-     * 
-     * @param  y    ein Beispielparameter für eine Methode
-     * @return        die Summe aus x und y
-     */
-    public int beispielMethode(int y)
+    public Object get(int idx)
+    {  
+        System.out.println("out of bounds");
+    }
+    public int size()
     {
-        // tragen Sie hier den Code ein
-        return x + y;
+        return 0;
+    }
+    public void set(Dataelement data,int idx )
+    {
+        System.out.println("out of bounds");
+    }
+    public boolean contains(Dataelement data)
+    {
+        return false;
+    }
+    public void print(){
+        System.out.println();
     }
 }
