@@ -1,33 +1,62 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
-/**
- * Beschreiben Sie hier die Klasse API.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- */
-public class API
-{
-    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
-    private int x;
+public class API {
+    public static String get(String query) throws IOException {
+        query = query.replace(" ", "%20");
+        System.out.println();
+        System.out.println("query: " + query);
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(query))
+                .build();
 
-    /**
-     * Konstruktor für Objekte der Klasse API
-     */
-    public API()
-    {
-        // Instanzvariable initialisieren
-        x = 0;
+        HttpResponse<String> response = null;
+        try {
+            response = client.send(request,
+                    HttpResponse.BodyHandlers.ofString());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(response.body());
+
+        return response.body();
     }
 
-    /**
-     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
-     * 
-     * @param  y    ein Beispielparameter für eine Methode
-     * @return        die Summe aus x und y
-     */
-    public int beispielMethode(int y)
-    {
-        // tragen Sie hier den Code ein
-        return x + y;
+    public static String wikiSearch(String query){
+        try{
+            String subject = query.toLowerCase().replace(" ", "%20");
+            URL url = new URL("https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&explaintext=&exsectionformat=plain&titles=" + subject.replace(" ", "%20"));
+            String text = "";
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()))) {
+                String line = null;
+                while (null != (line = br.readLine())) {
+                    line = line.trim();
+                    if (true) {
+                        text += line;
+                    }
+                }
+            }
+            catch (IOException ex){
+                System.out.println(ex);
+            }
+
+            System.out.println("text = " + text);
+            String result = text.substring(text.indexOf("extract")+10, text.length() - 5);
+            System.out.println(result);
+            return result;
+        }
+        catch(MalformedURLException e){
+
+        }
+        return "error";
     }
 }
