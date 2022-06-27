@@ -1,33 +1,37 @@
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-/**
- * Beschreiben Sie hier die Klasse Json.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- */
 public class Json
 {
-    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
-    private int x;
-
-    /**
-     * Konstruktor für Objekte der Klasse Json
-     */
-    public Json()
-    {
-        // Instanzvariable initialisieren
-        x = 0;
+    public static Vector2 getLatLngCapital(String json){
+        JSONArray latLng = ((JSONObject)new JSONArray(json).getJSONObject(0).get("capitalInfo")).getJSONArray("latlng");
+        return new Vector2(Float.parseFloat(latLng.get(0).toString()), Float.parseFloat(latLng.get(1).toString()));
     }
 
-    /**
-     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
-     * 
-     * @param  y    ein Beispielparameter für eine Methode
-     * @return        die Summe aus x und y
-     */
-    public int beispielMethode(int y)
-    {
-        // tragen Sie hier den Code ein
-        return x + y;
+    public static String[] getBorders(String json){
+        try {
+            JSONArray borders = ((JSONObject) new JSONArray(json).getJSONObject(0)).getJSONArray("borders");
+            String[] res = new String[borders.length()];
+            for (int i = 0; i < borders.length(); i++) {
+                res[i] = borders.get(i).toString();
+            }
+            return res;
+        }
+        catch(Exception e){
+
+        }
+        return new String[0];
     }
+
+    public static String getCca3(String json){
+        return new JSONArray(json).getJSONObject(0).getString("cca3");
+    }
+
+    public static String getWikiSearch(String json){
+        int extract = json.indexOf("extract");
+        String result = json.substring(extract);
+        return result;
+    }
+    
+    
 }
