@@ -1,33 +1,25 @@
-
-/**
- * Beschreiben Sie hier die Klasse Guess.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- */
 public class Guess
 {
-    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
-    private int x;
+    private String name;
+    private int distance;
+    private int steps;
 
-    /**
-     * Konstruktor für Objekte der Klasse Guess
-     */
-    public Guess()
-    {
-        // Instanzvariable initialisieren
-        x = 0;
+    public Guess(String name, int distance, int steps)
+    {   
+        this.name = name;
+        this.distance = distance;
+        this.steps = steps;
     }
 
-    /**
-     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
-     * 
-     * @param  y    ein Beispielparameter für eine Methode
-     * @return        die Summe aus x und y
-     */
-    public int beispielMethode(int y)
-    {
-        // tragen Sie hier den Code ein
-        return x + y;
+    public String getName(){
+        return name;
+    }
+    
+    public int getDistance(){
+        return distance;
+    }
+    
+    public int getSteps(){
+        return steps;
     }
 }
