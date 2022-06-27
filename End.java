@@ -13,12 +13,12 @@ public class End extends ListElement
         return 0;
     }
     
-    public void set(Dataelement data, int idx){
+    public void set(DataElement data, int idx){
         System.out.println("out of bounds");
         return;
     }
     
-    public boolean contains(Dataelement data){
+    public boolean contains(DataElement data){
         return false;
     }
     
