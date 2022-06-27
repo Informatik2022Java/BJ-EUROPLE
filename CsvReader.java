@@ -1,33 +1,33 @@
+import java.io.*;  
+import java.util.Scanner;  
+import java.io.BufferedReader; 
 
-/**
- * Beschreiben Sie hier die Klasse CsvReader.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- */
 public class CsvReader
 {
-    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
-    private int x;
-
-    /**
-     * Konstruktor für Objekte der Klasse CsvReader
-     */
-    public CsvReader()
-    {
-        // Instanzvariable initialisieren
-        x = 0;
-    }
-
-    /**
-     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
-     * 
-     * @param  y    ein Beispielparameter für eine Methode
-     * @return        die Summe aus x und y
-     */
-    public int beispielMethode(int y)
-    {
-        // tragen Sie hier den Code ein
-        return x + y;
+    public static String[][] readFile(String file, Vector2 start, Vector2 end){
+        if(start.x > end.x || start.y > end.y){
+            System.out.println("start > end");
+            return null;
+        }
+        String[][] matrix = new String[(int)(end.y - start.y) + 1][(int)(end.x - start.x) + 1];
+        try(BufferedReader br = new BufferedReader(new FileReader(file))){
+            for(int i = 0; i < start.y; i++){
+                br.readLine();
+            }
+            String line;
+            for(int i = 0; i < end.y - start.y + 1; i++){
+                line = br.readLine();
+                String[] cells = line.split(";");
+                for(int j = 0; j < end.x - start.x + 1; j++){
+                    //System.out.println(cells[j] + ": "+ j + "/" + cells.length + " " + i + "/" + matrix.length);
+                    matrix[i][j] = cells[j];
+                }
+            }
+        }
+        catch(IOException e){
+            System.out.println(e);
+        }
+        
+        return matrix;
     }
 }
