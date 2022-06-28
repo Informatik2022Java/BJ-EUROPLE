@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 
 public class CsvReader
 {
+    // reads 2d matrix from file starting at coords start and ending at end
     public static String[][] readFile(String file, Vector2 start, Vector2 end){
         if(start.x > end.x || start.y > end.y){
             System.out.println("start > end");

@@ -17,12 +17,11 @@ public class Game
         String[][] data = CsvReader.readFile("data.csv", new Vector2(0,0), new Vector2(0,35));
         countries = new Countries(36);
 
+        //start Ui & Music, then load data from Api
         Ui.start();
         Ui.loading();
         Music.playMusic("gamemusic.wav", true);
-
-        //loading data while ui still running -> use of second Thread
-        //new Thread(() -> {
+        
         for (String[] datum : data) {
             String name = datum[0];
             String json = null;

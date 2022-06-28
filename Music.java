@@ -1,33 +1,58 @@
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.*;
+import java.io.File;
 
-/**
- * Beschreiben Sie hier die Klasse Music.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- */
-public class Music
-{
-    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
-    private int x;
+public class Music{
+    private static Clip clipLoop;
+    private static Clip clipSoundeffect;
+    private static boolean musicPlaying;
+    
+    public static void playMusic(String musicLocation, boolean loop){
+        try{
+            File musicPath = new File(musicLocation);
+            if(musicPath.exists()){
+                AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
 
-    /**
-     * Konstruktor für Objekte der Klasse Music
-     */
-    public Music()
-    {
-        // Instanzvariable initialisieren
-        x = 0;
+                System.out.println("playing music");
+                musicPlaying = true;
+
+                if (loop){
+                    clipLoop = AudioSystem.getClip();
+                    clipLoop.open(audioInput);
+                    clipLoop.start();
+                    clipLoop.loop(Clip.LOOP_CONTINUOUSLY);
+                }
+                else{
+                    clipSoundeffect = AudioSystem.getClip();
+                    clipSoundeffect.open(audioInput);
+                    clipSoundeffect.start();
+                }
+
+
+                //JOptionPane.showMessageDialog(null, "press ok to stop music");
+            }
+            else {
+                System.out.println("Cant find file");
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
-    /**
-     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
-     * 
-     * @param  y    ein Beispielparameter für eine Methode
-     * @return        die Summe aus x und y
-     */
-    public int beispielMethode(int y)
-    {
-        // tragen Sie hier den Code ein
-        return x + y;
+    public static void stopMusic(){
+        musicPlaying = false;
+        clipLoop.stop();
+    }
+
+    public static boolean toogleMusic(String musicLocation){
+        if (musicPlaying) {
+            stopMusic();
+        } else {
+            playMusic(musicLocation, true);
+        }
+        return musicPlaying;
     }
 }
