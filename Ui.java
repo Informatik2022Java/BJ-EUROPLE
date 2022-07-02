@@ -36,9 +36,6 @@ public class Ui
     //private static JPanel panel;
     public static JFrame frame;
     private static JLayeredPane panel;
-    public Ui(){
-
-    }
 
     public static void start(){
         frame = new JFrame("EUROPLE");
@@ -49,13 +46,9 @@ public class Ui
         frame.setMaximumSize(size);
         frame.setResizable(false);
         frame.setBackground(Color.WHITE);
-        //frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("images/UI/icon.png")));
+        
         ImageIcon img = new ImageIcon("images/UI/icon.png");
         frame.setIconImage(img.getImage());
-
-        //panel = new JPanel();
-        //panel.setBackground(Color.WHITE);
-        //panel.setLayout(null);
 
         panel = new JLayeredPane();
         panel.setBackground(Color.WHITE);

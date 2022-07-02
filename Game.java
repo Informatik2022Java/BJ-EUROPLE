@@ -14,59 +14,57 @@ public class Game
 
     public Game() throws java.io.IOException
     {
+        //read all country-names from csv file
         String[][] data = CsvReader.readFile("data.csv", new Vector2(0,0), new Vector2(0,35));
         countries = new Countries(36);
 
-        //start Ui & Music, then load data from Api
+        //start Ui & Music
         Ui.start();
         Ui.loading();
         Music.playMusic("gamemusic.wav", true);
         
-        for (String[] datum : data) {
-            String name = datum[0];
+        //get data from API using the country-names
+        for (String[] line : data) {
+            String name = line[0];
             String json = null;
             try {
                 json = API.get("https://restcountries.com/v3.1/name/" + name.replace(" ", "%20"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            
+            //extract actual data from json
             String id = Json.getCca3(json);
             Vector2 pos = Json.getLatLngCapital(json);
             String[] borders = Json.getBorders(json);
-
-
+            
             countries.add(new Country(name.toUpperCase(), id, pos, new LinkedList(borders)));
         }
-                System.out.println("loaded all Countries from API");
-                for(int i = 0; i < data.length; i++){
-                    Country curCountry = (Country)countries.get(i);
-                    LinkedList borders = curCountry.getBorders();
-                    for(int country = 0; country < countries.size(); country++){
-                        String cca3 = countries.get(country).getId();
-                        //System.out.println("searching: "+ cca3 + " in: " + curCountry.getName());
-                        Object cca = cca3;
-                        //System.out.println(cca);
-                        if (borders.contains(cca)){
-                            System.out.println("found it");
-                            Vector2 pos = ((Country) countries.get(country)).getPos();
-                            countries.setEdge(country, i, Countries.dist2coords(curCountry.getPos(), pos));
-                            countries.setEdge(i, country, Countries.dist2coords(curCountry.getPos(), pos));
-                        }
-                    }
+        //System.out.println("loaded all Countries from API");
+        
+        
+        for(int i = 0; i < data.length; i++){
+            Country curCountry = (Country)countries.get(i);
+            LinkedList borders = curCountry.getBorders();
+            for(int country = 0; country < countries.size(); country++){
+                String cca3 = countries.get(country).getId();
+                //System.out.println("searching: "+ cca3 + " in: " + curCountry.getName());
+                Object cca = cca3;
+                //if country borders other country, find distance
+                if (borders.contains(cca)){
+                    System.out.println("found it");
+                    Vector2 pos = ((Country) countries.get(country)).getPos();
+                    countries.setEdge(country, i, Countries.dist2coords(curCountry.getPos(), pos));
+                    countries.setEdge(i, country, Countries.dist2coords(curCountry.getPos(), pos));
                 }
-            //}).start();
-
-
-
+            }
+        }
         newGame();
-
-
     }
 
     public void reset(){
         right = false;
         guesses = new LinkedList();
-
         int rdmIdx = (int)(Math.random() * countries.size());
         solution = (Country)countries.get(rdmIdx);
     }
@@ -74,6 +72,7 @@ public class Game
     //starting a new game -> getting the number of players
     public void newGame() throws java.io.IOException {
         Ui.clear();
+        
         JComponent[] components = Ui.playerAmountSelect();
         JButton btn = (JButton)components[0];
         JTextField input = (JTextField)components[1];
@@ -136,6 +135,11 @@ public class Game
                 }
 
                 right = input.equals(solution.getName());
+                
+                if(right){
+                        //System.out.println("> playing congrats sound");
+                        Music.playMusic("music/congrats.wav", false);
+                }
 
                 if(numberOfPlayers > 1){
                     //multiplayer
@@ -156,14 +160,13 @@ public class Game
                         Country country = (Country)countries.getVertex(input);
                         Vector2 distAndSteps = countries.costAndSteps(country.getId(), solution.getId());
                         countries.printMatrix();
-                        System.out.println(country.getId());
-                        //Vector2 distAndSteps = countries.costAndSteps("de", "pl");
-                        System.out.println(distAndSteps.x + " " + distAndSteps.y);
+                        //System.out.println(country.getId());
+                        //System.out.println(distAndSteps.x + " " + distAndSteps.y);
+                        
                         guesses.add(new Guess(input, (int)distAndSteps.x, (int)distAndSteps.y));
-
                         game();
 
-                        //reached max guesses
+                        //max guesses
                         if(guesses.size() == Math.max((6 - round), 1)){
                             try
                             {
@@ -200,6 +203,7 @@ public class Game
                                             guesses = new LinkedList();
                                             game();
                                             if(count == 1){
+                                                //only 1 player still in -> player won
                                                 try
                                                 {
                                                     JButton newGame = (JButton)Ui.playerWon(index)[0];
@@ -241,20 +245,14 @@ public class Game
 
                     Country country = (Country)countries.getVertex(input);
                     Vector2 distAndSteps = countries.costAndSteps(country.getId(), solution.getId());
-                    countries.printMatrix();
-                    System.out.println(country.getId());
+                    //countries.printMatrix();
+                    //System.out.println(country.getId());
                     //Vector2 distAndSteps = countries.costAndSteps("de", "pl");
-                    System.out.println(distAndSteps.x + " " + distAndSteps.y);
-
-
-                    if(right){
-                        System.out.println("> playing congrats sound");
-                        Music.playMusic("music/congrats.wav", false);
-                    }
+                    //System.out.println(distAndSteps.x + " " + distAndSteps.y);
 
                     int count = guesses.size();
 
-                    if(count == 6 -1){
+                    if(count == 6-1){
                         Music.playMusic("music/fail.wav", false);
                         guesses.add(new Guess(input, (int)distAndSteps.x, (int)distAndSteps.y));
                     }
@@ -266,14 +264,13 @@ public class Game
                     }
 
                     game();
-
                 }
             });
 
             JButton giveUpBtn = (JButton)components[1];
             giveUpBtn.addActionListener(new ActionListener(){
                     public void actionPerformed(ActionEvent e){
-                        System.out.println("click");
+                        //System.out.println("click");
                         Ui.clear();
                         try
                         {
