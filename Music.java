@@ -29,8 +29,6 @@ public class Music{
                     clipSoundeffect.open(audioInput);
                     clipSoundeffect.start();
                 }
-
-
                 //JOptionPane.showMessageDialog(null, "press ok to stop music");
             }
             else {

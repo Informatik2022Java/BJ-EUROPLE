@@ -11,8 +11,8 @@ import java.net.http.HttpResponse;
 public class API {
     public static String get(String query) throws IOException {
         query = query.replace(" ", "%20");
-        System.out.println();
-        System.out.println("query: " + query);
+        //System.out.println();
+        //System.out.println("query: " + query);
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(query))
@@ -20,14 +20,12 @@ public class API {
 
         HttpResponse<String> response = null;
         try {
-            response = client.send(request,
-                    HttpResponse.BodyHandlers.ofString());
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        System.out.println(response.body());
-
+        //System.out.println(response.body());
         return response.body();
     }
 
@@ -49,9 +47,9 @@ public class API {
                 System.out.println(ex);
             }
 
-            System.out.println("text = " + text);
+            //System.out.println("text = " + text);
             String result = text.substring(text.indexOf("extract")+10, text.length() - 5);
-            System.out.println(result);
+            //System.out.println(result);
             return result;
         }
         catch(MalformedURLException e){

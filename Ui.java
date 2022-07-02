@@ -33,7 +33,6 @@ import java.awt.Cursor;
 
 public class Ui
 {
-    //private static JPanel panel;
     public static JFrame frame;
     private static JLayeredPane panel;
 
@@ -60,8 +59,9 @@ public class Ui
         frame.setVisible(true);
     }
     
-    public static JComponent[] loading(){
-        System.out.println("loading...");
+    //loading screen
+    public static void loading(){
+        //System.out.println("loading...");
         URL url = Ui.class.getClassLoader().getResource("images/ui/loadingAnim.gif");
         JLabel loadingGif = new JLabel(new ImageIcon(url));
         loadingGif.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -76,8 +76,6 @@ public class Ui
         panel.validate();
         panel.repaint();
         panel.revalidate();
-
-        return null;
     }
 
     public static JComponent[] playerAmountSelect() throws IOException {
@@ -97,7 +95,6 @@ public class Ui
         btn.setFont(getFont("Koulen-Regular.ttf", 30f));
         btn.setBorderPainted(false);
         btn.setFocusPainted(false);
-        //btn.setContentAreaFilled(false);
         btn.setBackground(Color.decode("#4E9424"));
         btn.setForeground(Color.WHITE);
         btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -241,7 +238,6 @@ public class Ui
 
     public static void clear(){
         panel.removeAll();
-
         panel.repaint();
     }
 
@@ -475,7 +471,6 @@ public class Ui
         // System.out.println("get font: " + name + " " + size);
         try
         {
-            //create the font to use. Specify the size!
             Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/" + name)).deriveFont(size);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             //register the font
@@ -513,11 +508,11 @@ public class Ui
         out.setLayout(null);
         out.setBackground(new Color(0,0,0,0));
         
-        JLabel notFound = new JLabel("<html><p>Player " + (number+1) + " is out</p></html>", SwingConstants.CENTER);
-        notFound.setFont(getFont("Koulen-Regular.ttf", 73f));
-        notFound.setBounds(0,0,733,469);
-        notFound.setOpaque(false);
-        out.add(notFound);
+        JLabel outText = new JLabel("<html><p>Player " + (number+1) + " is out</p></html>", SwingConstants.CENTER);
+        outText.setFont(getFont("Koulen-Regular.ttf", 73f));
+        outText.setBounds(0,0,733,469);
+        outText.setOpaque(false);
+        out.add(outText);
         
         panel.add(out, 1, 0);
 
@@ -559,17 +554,5 @@ public class Ui
         JComponent[] list = new JComponent[1];
         list[0] = newGame;
         return list;
-    }
-
-    public static void wait(int ms)
-    {
-        try
-        {
-            Thread.sleep(ms);
-        }
-        catch(InterruptedException ex)
-        {
-            Thread.currentThread().interrupt();
-        }
     }
 }

@@ -18,7 +18,7 @@ public class Json
             return res;
         }
         catch(Exception e){
-
+            e.printStackTrace();
         }
         return new String[0];
     }
@@ -32,6 +32,4 @@ public class Json
         String result = json.substring(extract);
         return result;
     }
-    
-    
 }
