@@ -1,33 +1,18 @@
 
-/**
- * Beschreiben Sie hier die Klasse MainCountries.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- */
 public class MainCountries
 {
-    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
-    private int x;
-
-    /**
-     * Konstruktor für Objekte der Klasse MainCountries
-     */
+    private Countries countries;
+    
     public MainCountries()
     {
-        // Instanzvariable initialisieren
-        x = 0;
-    }
-
-    /**
-     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
-     * 
-     * @param  y    ein Beispielparameter für eine Methode
-     * @return        die Summe aus x und y
-     */
-    public int beispielMethode(int y)
-    {
-        // tragen Sie hier den Code ein
-        return x + y;
+        String[][] data = CsvReader.readFile("counties.csv", new Vector2(0,0), new Vector2(4,8));
+        countries = new Countries(Countries.getCountriesFromData(data), Countries.getEdgesFromData(data));
+        
+        countries.printMatrix();
+        
+        System.out.println();
+        System.out.println();
+        
+        System.out.println(countries.dist2coords(new Vector2(52.3f, 21), new Vector2(52.6f, 13.4f)));;
     }
 }
