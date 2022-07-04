@@ -1,33 +1,20 @@
 
-/**
- * Beschreiben Sie hier die Klasse Country.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- */
-public class Country
+public class Country extends Vertex
 {
-    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
-    private int x;
+    private String name;
+    private String id;
 
-    /**
-     * Konstruktor für Objekte der Klasse Country
-     */
-    public Country()
+    public Country(String name, String id)
     {
-        // Instanzvariable initialisieren
-        x = 0;
+        this.name = name;
+        this.id = id;
     }
 
-    /**
-     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
-     * 
-     * @param  y    ein Beispielparameter für eine Methode
-     * @return        die Summe aus x und y
-     */
-    public int beispielMethode(int y)
-    {
-        // tragen Sie hier den Code ein
-        return x + y;
+    public String getId(){
+        return id;
+    }
+    
+    public String getName(){
+        return name;
     }
 }
