@@ -30,6 +30,10 @@ public abstract class Graph
         System.out.println("out of bounds");
     }
 
+    public void setEdge(int r, int c, int value){
+        edges[r][c] = value;
+    }
+
     private int getIdxOf(String id){
         for(int i = 0; i < number; i++){
             if(vertices[i].getId().equals(id)){
@@ -132,21 +136,15 @@ public abstract class Graph
         System.out.println("> searching path: " + startIdx + "-" + endIdx);
         visited.add(startIdx);
         System.out.println(edges[startIdx][endIdx]);
-        if(edges[startIdx][endIdx] > 0){
+        if (startIdx == endIdx){
             return true;
         }
-        if(startIdx == endIdx){
-            return true;
-        }
-        for(int i = 0; i < number; i++){
-            if(edges[startIdx][i] > 0 && !visited.contains(i)){
-                if(startIdx == endIdx){
+        for (int i = 0; i < number; i++) {
+            if(!visited.contains(i) && edges[startIdx][i] > 0){
+                boolean path = pathExistsIdx(i, endIdx, visited);
+                if(path){
                     return true;
                 }
-                if(edges[startIdx][endIdx] > 0){
-                    return true;
-                }
-                return pathExistsIdx(i, endIdx, visited);
             }
         }
         return false;
@@ -169,4 +167,3 @@ public abstract class Graph
         return null;
     }
 }
-

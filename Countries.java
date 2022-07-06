@@ -1,4 +1,3 @@
-
 public class Countries extends Graph
 {
     
@@ -6,6 +5,8 @@ public class Countries extends Graph
     {
         super(10);
     }
+
+    public Countries(int max){ super(max);}
     
     public Countries(Country[] countries, int[][] edges){
         super(countries, edges);
