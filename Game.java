@@ -21,7 +21,7 @@ public class Game
         //start Ui & Music
         Ui.start();
         Ui.loading();
-        Music.playMusic("gamemusic.wav", true);
+        Music.playMusic("music/gamemusic.wav", true);
         
         //get data from API using the country-names
         for (String[] line : data) {
