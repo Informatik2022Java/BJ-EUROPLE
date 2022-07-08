@@ -69,6 +69,7 @@ public abstract class Graph
          * DIJKSTRA ALGORITHMUS 
          * implementiert nach
          * https://youtu.be/KiOso3VE-vI
+         * durch @Felix
          */
 
         LinkedList costs = new LinkedList();

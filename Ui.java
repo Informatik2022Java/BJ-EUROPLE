@@ -33,30 +33,30 @@ import java.awt.Cursor;
 
 public class Ui
 {
-    public static JFrame frame;
-    private static JLayeredPane panel;
+    public static JFrame FRAME;
+    private static JLayeredPane PANEL;
 
     public static void start(){
-        frame = new JFrame("EUROPLE");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        FRAME = new JFrame("EUROPLE");
+        FRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dimension size = new Dimension(1071, 700);
-        frame.setPreferredSize(size);
-        frame.setMinimumSize(size);
-        frame.setMaximumSize(size);
-        frame.setResizable(false);
-        frame.setBackground(Color.WHITE);
+        FRAME.setPreferredSize(size);
+        FRAME.setMinimumSize(size);
+        FRAME.setMaximumSize(size);
+        FRAME.setResizable(false);
+        FRAME.setBackground(Color.WHITE);
         
         ImageIcon img = new ImageIcon("images/UI/icon.png");
-        frame.setIconImage(img.getImage());
+        FRAME.setIconImage(img.getImage());
 
-        panel = new JLayeredPane();
-        panel.setBackground(Color.WHITE);
-        panel.setLayout(null);
-        panel.setOpaque(true);
+        PANEL = new JLayeredPane();
+        PANEL.setBackground(Color.WHITE);
+        PANEL.setLayout(null);
+        PANEL.setOpaque(true);
 
-        frame.add(panel);
-        frame.pack();
-        frame.setVisible(true);
+        FRAME.add(PANEL);
+        FRAME.pack();
+        FRAME.setVisible(true);
     }
     
     //loading screen
@@ -66,16 +66,16 @@ public class Ui
         JLabel loadingGif = new JLabel(new ImageIcon(url));
         loadingGif.setAlignmentX(Component.CENTER_ALIGNMENT);
         loadingGif.setBounds(918, 592, 123, 41);
-        panel.add(loadingGif);
+        PANEL.add(loadingGif);
 
         JLabel logo = new JLabel(new ImageIcon(((new ImageIcon("images/ui/logo2.png")).getImage()).getScaledInstance(541,246, java.awt.Image.SCALE_SMOOTH)));
         logo.setAlignmentX(Component.CENTER_ALIGNMENT);
         logo.setBounds(265, 191, 541, 246);
-        panel.add(logo);
+        PANEL.add(logo);
 
-        panel.validate();
-        panel.repaint();
-        panel.revalidate();
+        PANEL.validate();
+        PANEL.repaint();
+        PANEL.revalidate();
     }
 
     public static JComponent[] playerAmountSelect() throws IOException {
@@ -99,14 +99,14 @@ public class Ui
         btn.setForeground(Color.WHITE);
         btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-        panel.add(btn);
-        panel.add(input);
-        panel.add(logo);
+        PANEL.add(btn);
+        PANEL.add(input);
+        PANEL.add(logo);
 
         JLabel country = new JLabel("please enter the number of players", SwingConstants.CENTER);
         country.setFont(getFont("Koulen-Regular.ttf", 40f));
         country.setBounds(0,182,1071,50);
-        panel.add(country);
+        PANEL.add(country);
 
         JLabel music = new JLabel(new ImageIcon(((new ImageIcon("images/UI/music.png")).getImage()).getScaledInstance(40,40, java.awt.Image.SCALE_SMOOTH)));
         music.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -124,7 +124,7 @@ public class Ui
                 }
             }
         });
-        panel.add(music);
+        PANEL.add(music);
 
         JLabel credits = new JLabel(new ImageIcon(((new ImageIcon("images/UI/credit.png")).getImage()).getScaledInstance(123,41, java.awt.Image.SCALE_SMOOTH)));
         credits.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -224,11 +224,11 @@ public class Ui
                 popup.setVisible(true);
             }
         });
-        panel.add(credits);
+        PANEL.add(credits);
 
-        panel.validate();
-        panel.repaint();
-        panel.revalidate();
+        PANEL.validate();
+        PANEL.repaint();
+        PANEL.revalidate();
 
         JComponent[] list = new JComponent[2];
         list[0] = btn;
@@ -237,8 +237,8 @@ public class Ui
     }
 
     public static void clear(){
-        panel.removeAll();
-        panel.repaint();
+        PANEL.removeAll();
+        PANEL.repaint();
     }
 
     public static JComponent[] game(LinkedList guesses, Country solution, Vector2 player, int round) throws IOException {
@@ -254,27 +254,27 @@ public class Ui
         JLabel logo = new JLabel(new ImageIcon(((new ImageIcon("images/ui/logo.png")).getImage()).getScaledInstance(368,120, java.awt.Image.SCALE_SMOOTH)));
         logo.setAlignmentX(Component.CENTER_ALIGNMENT);
         logo.setBounds(351, 0, 367, 119);
-        panel.add(logo);
+        PANEL.add(logo);
 
         JLabel outline = new JLabel(new ImageIcon(((new ImageIcon("images/maps/png/" + solution.getId() + ".png")).getImage()).getScaledInstance(195,195, java.awt.Image.SCALE_SMOOTH)));
         outline.setAlignmentX(Component.CENTER_ALIGNMENT);
         outline.setBounds(438,119,195,195);
-        panel.add(outline);
+        PANEL.add(outline);
 
         JLabel country = new JLabel("country", SwingConstants.CENTER);
         country.setFont(getFont("Koulen-Regular.ttf", 22f));
         country.setBounds(300,322,157,30);
-        panel.add(country);
+        PANEL.add(country);
 
         JLabel distance = new JLabel("distance", SwingConstants.CENTER);
         distance.setFont(getFont("Koulen-Regular.ttf", 22f));
         distance.setBounds(457,322,157,30);
-        panel.add(distance);
+        PANEL.add(distance);
 
         JLabel steps = new JLabel("steps", SwingConstants.CENTER);
         steps.setFont(getFont("Koulen-Regular.ttf", 22f));
         steps.setBounds(613,322,157,30);
-        panel.add(steps);
+        PANEL.add(steps);
 
         for(int i = 0; i < guesses.size(); i++){
             JPanel bar = new JPanel();
@@ -286,7 +286,7 @@ public class Ui
                 bar.setBackground(Color.decode("#A5A5A5"));
             }
             bar.setBounds(300,360 + 35*i, 470, 30);
-            panel.add(bar);
+            PANEL.add(bar);
 
             JLabel name = new JLabel(((Guess)(guesses.get(i))).getName(), SwingConstants.CENTER);
             name.setFont(getFont("Koulen-Regular.ttf", 22f));
@@ -312,13 +312,13 @@ public class Ui
             JPanel bar = new JPanel();
             bar.setBackground(Color.decode("#D9D9D9"));
             bar.setBounds(300,360 + 35*(i + guesses.size()), 470, 30);
-            panel.add(bar);
+            PANEL.add(bar);
         }
 
         JTextField guess = new JTextField();
         guess.setBounds(300,588,235,37);
         guess.setFont(getFont("Koulen-Regular.ttf", 22f));
-        panel.add(guess);
+        PANEL.add(guess);
 
         JButton btn = new JButton("guess");
         btn.setBounds(535,588,235,37);
@@ -329,17 +329,17 @@ public class Ui
         btn.setBackground(Color.decode("#4E9424"));
         btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn.setForeground(Color.WHITE);
-        panel.add(btn);
+        PANEL.add(btn);
 
         JLabel playerCount = new JLabel((int)player.x + " player", SwingConstants.CENTER);
         playerCount.setFont(getFont("Koulen-Regular.ttf", 22f));
         playerCount.setBounds(30,30,110,40);
-        panel.add(playerCount);
+        PANEL.add(playerCount);
 
         JLabel playerTurn = new JLabel((int)player.y + "\'s turn", SwingConstants.CENTER);
         playerTurn.setFont(getFont("Koulen-Regular.ttf", 22f));
         playerTurn.setBounds(30,134,110,40);
-        panel.add(playerTurn);
+        PANEL.add(playerTurn);
 
         JButton giveUp = new JButton("give up");
         if(guessed){
@@ -353,7 +353,7 @@ public class Ui
         giveUp.setBackground(Color.decode("#4E9424"));
         giveUp.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         giveUp.setForeground(Color.WHITE);
-        panel.add(giveUp);
+        PANEL.add(giveUp);
 
         JLabel help = new JLabel(new ImageIcon(((new ImageIcon("images/UI/help.png")).getImage()).getScaledInstance(40,40, java.awt.Image.SCALE_SMOOTH)));
         help.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -365,7 +365,7 @@ public class Ui
                     openWebpage("https://docs.google.com/document/d/1gDcPWK0FKAoBOFZ3fq5qvlNocPAcOAJp08E77_EMw_8/edit?usp=sharing");
                 }
             });
-        panel.add(help);
+        PANEL.add(help);
 
         if(guessed || guesses.size() >= 6){
             JLabel info = new JLabel(new ImageIcon(((new ImageIcon("images/UI/info.png")).getImage()).getScaledInstance(120,40, java.awt.Image.SCALE_SMOOTH)));
@@ -452,12 +452,12 @@ public class Ui
                         popup.setVisible(true);
                     }
                 });
-            panel.add(info);
+            PANEL.add(info);
         }
 
-        panel.validate();
-        panel.repaint();
-        panel.revalidate();
+        PANEL.validate();
+        PANEL.repaint();
+        PANEL.revalidate();
         //System.out.println(logo);
 
         JComponent[] list = new JComponent[3];
@@ -495,11 +495,11 @@ public class Ui
         JLabel notFound = new JLabel("<html><p>no country: " + notFoundCountry + "</p></html>", SwingConstants.CENTER);
         notFound.setFont(getFont("Koulen-Regular.ttf", 22f));
         notFound.setBounds(30,532,110,100);
-        panel.add(notFound);
+        PANEL.add(notFound);
 
-        panel.validate();
-        panel.repaint();
-        panel.revalidate();
+        PANEL.validate();
+        PANEL.repaint();
+        PANEL.revalidate();
     }
 
     public static void playerLost(int number) throws IOException{
@@ -514,11 +514,11 @@ public class Ui
         outText.setOpaque(false);
         out.add(outText);
         
-        panel.add(out, 1, 0);
+        PANEL.add(out, 1, 0);
 
-        panel.validate();
-        panel.repaint();
-        panel.revalidate();
+        PANEL.validate();
+        PANEL.repaint();
+        PANEL.revalidate();
     }
     
     public static JComponent[] playerWon(int number) throws IOException{
@@ -545,11 +545,11 @@ public class Ui
         newGame.setForeground(Color.WHITE);
         won.add(newGame);
         
-        panel.add(won, 1, 0);
+        PANEL.add(won, 1, 0);
 
-        panel.validate();
-        panel.repaint();
-        panel.revalidate();
+        PANEL.validate();
+        PANEL.repaint();
+        PANEL.revalidate();
         
         JComponent[] list = new JComponent[1];
         list[0] = newGame;
