@@ -33,6 +33,8 @@ public class Game
                 e.printStackTrace();
             }
             
+            System.out.println(json);
+            
             //extract actual data from json
             String id = Json.getCca3(json);
             Vector2 pos = Json.getLatLngCapital(json);

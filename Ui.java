@@ -83,7 +83,7 @@ public class Ui
 
         JLabel logo = new JLabel(new ImageIcon(((new ImageIcon("images/ui/logo2.png")).getImage()).getScaledInstance(264,120, java.awt.Image.SCALE_SMOOTH)));
         logo.setAlignmentX(Component.CENTER_ALIGNMENT);
-        logo.setBounds(351, 0, 367, 119);
+        logo.setBounds(351, 30, 367, 119);
 
         JTextField input = new JTextField("1");
         input.setPreferredSize(new Dimension(200,40));

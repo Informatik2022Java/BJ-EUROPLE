@@ -18,7 +18,9 @@ public class Json
             return res;
         }
         catch(Exception e){
-            e.printStackTrace();
+            //because some countries dont have any bordering countries (like iceland) this will trigger regulary
+            //System.out.println("error: " + json);
+            //e.printStackTrace();
         }
         return new String[0];
     }
