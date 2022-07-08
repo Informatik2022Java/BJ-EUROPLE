@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Country
+comment1.params=name\ id\ pos\ borders
+comment1.target=Country(java.lang.String,\ java.lang.String,\ Vector2,\ LinkedList)
+comment2.params=name\ id
+comment2.target=Country(java.lang.String,\ java.lang.String)
+comment3.params=
+comment3.target=java.lang.String\ getId()
+comment4.params=
+comment4.target=java.lang.String\ getName()
+comment5.params=
+comment5.target=Vector2\ getPos()
+comment6.params=
+comment6.target=LinkedList\ getBorders()
+numComments=7

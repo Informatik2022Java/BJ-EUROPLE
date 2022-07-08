@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Json
+comment1.params=json
+comment1.target=Vector2\ getLatLngCapital(java.lang.String)
+comment2.params=json
+comment2.target=java.lang.String[]\ getBorders(java.lang.String)
+comment3.params=json
+comment3.target=java.lang.String\ getCca3(java.lang.String)
+comment4.params=json
+comment4.target=java.lang.String\ getWikiSearch(java.lang.String)
+numComments=5

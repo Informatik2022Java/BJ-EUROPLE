@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=API
+comment1.params=query
+comment1.target=java.lang.String\ get(java.lang.String)
+comment2.params=query
+comment2.target=java.lang.String\ wikiSearch(java.lang.String)
+numComments=3

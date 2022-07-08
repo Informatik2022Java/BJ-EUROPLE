@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=LinkedList
+comment1.params=
+comment1.target=LinkedList()
+comment2.params=arr
+comment2.target=LinkedList(java.lang.Object[])
+comment3.params=data
+comment3.target=void\ add(java.lang.Object)
+comment4.params=idx
+comment4.target=java.lang.Object\ get(int)
+comment5.params=
+comment5.target=int\ size()
+comment6.params=idx\ data
+comment6.target=void\ set(int,\ java.lang.Object)
+comment7.params=data
+comment7.target=boolean\ contains(java.lang.Object)
+comment8.params=
+comment8.target=void\ print()
+numComments=9

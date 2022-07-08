@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Guess
+comment1.params=name\ distance\ steps
+comment1.target=Guess(java.lang.String,\ int,\ int)
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment3.params=
+comment3.target=int\ getDistance()
+comment4.params=
+comment4.target=int\ getSteps()
+numComments=5

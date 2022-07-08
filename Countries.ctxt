@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Countries
+comment1.params=
+comment1.target=Countries()
+comment2.params=max
+comment2.target=Countries(int)
+comment3.params=countries\ edges
+comment3.target=Countries(Country[],\ int[][])
+comment4.params=coordsA\ coordsB
+comment4.target=int\ dist2coords(Vector2,\ Vector2)
+comment5.params=lt1\ ln1\ lt2\ ln2
+comment5.target=double\ meters(double,\ double,\ double,\ double)
+comment6.params=data
+comment6.target=Country[]\ getCountriesFromData(java.lang.String[][])
+comment7.params=data
+comment7.target=int[][]\ getEdgesFromData(java.lang.String[][])
+numComments=8
