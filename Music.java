@@ -1,7 +1,6 @@
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.swing.*;
 import java.io.File;
 
 public class Music{
@@ -15,7 +14,7 @@ public class Music{
             if(musicPath.exists()){
                 AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
 
-                System.out.println("playing music");
+                //System.out.println("playing music");
                 musicPlaying = true;
 
                 if (loop){

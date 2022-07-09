@@ -67,7 +67,7 @@ public class Ui
             FONT_KOULEN_30 = getFont("Koulen-Regular.ttf", 30f);
             FONT_KOULEN_40 = getFont("Koulen-Regular.ttf", 40f);
             FONT_KOULEN_73 = getFont("Koulen-Regular.ttf", 73f);
-            System.out.println("loaded fonts");
+            //System.out.println("loaded fonts");
         }
         catch (FontFormatException ffe)
         {
