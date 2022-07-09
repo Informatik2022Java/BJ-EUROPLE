@@ -1,3 +1,9 @@
+! Most Comments are either for decribing the part or for debugging ! 
+
+
+
+@Team Members: Github & BlueJ:
+
 Github.com:
     - Settings
     - Developer Settings

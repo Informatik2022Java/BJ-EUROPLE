@@ -29,6 +29,7 @@ import java.awt.Cursor;
  *  Methods return all important components like buttons, inputfields etc
  *  Game-class adds eventlistener -> all data could be easyly stored in game-class
  * 
+ *  static so every class can control the UI without having to reference it
  */
 
 public class Ui
@@ -61,7 +62,7 @@ public class Ui
     
     //loading screen
     public static void loading(){
-        //System.out.println("loading...");
+        //System.out.println(">loading screen");
         URL url = Ui.class.getClassLoader().getResource("images/ui/loadingAnim.gif");
         JLabel loadingGif = new JLabel(new ImageIcon(url));
         loadingGif.setAlignmentX(Component.CENTER_ALIGNMENT);

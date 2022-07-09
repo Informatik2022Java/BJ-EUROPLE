@@ -32,8 +32,7 @@ public class Game
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            
-            System.out.println(json);
+            //System.out.println(json);
             
             //extract actual data from json
             String id = Json.getCca3(json);
