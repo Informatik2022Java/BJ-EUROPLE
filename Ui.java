@@ -36,7 +36,7 @@ public class Ui
 {
     public static JFrame FRAME;
     private static JLayeredPane PANEL;
-    
+
     private static Font FONT_KOULEN_22;
     private static Font FONT_KOULEN_30;
     private static Font FONT_KOULEN_40;
@@ -51,7 +51,7 @@ public class Ui
         FRAME.setMaximumSize(size);
         FRAME.setResizable(false);
         FRAME.setBackground(Color.WHITE);
-        
+
         ImageIcon img = new ImageIcon("images/UI/icon.png");
         FRAME.setIconImage(img.getImage());
 
@@ -59,8 +59,7 @@ public class Ui
         PANEL.setBackground(Color.WHITE);
         PANEL.setLayout(null);
         PANEL.setOpaque(true);
-        
-        
+
         try
         {
             FONT_KOULEN_22 = getFont("Koulen-Regular.ttf", 22f);
@@ -78,7 +77,7 @@ public class Ui
         FRAME.pack();
         FRAME.setVisible(true);
     }
-    
+
     //loading screen
     public static void loading(){
         //System.out.println(">loading screen");
@@ -133,17 +132,17 @@ public class Ui
         music.setBounds(1001, 592, 40, 40);
         music.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         music.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                boolean musicPlaying = Music.toogleMusic("music/gamemusic.wav");
-                if(musicPlaying){
-                    music.setIcon(new ImageIcon(((new ImageIcon("images/UI/music.png")).getImage()).getScaledInstance(40,40, java.awt.Image.SCALE_SMOOTH)));
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    boolean musicPlaying = Music.toogleMusic("music/gamemusic.wav");
+                    if(musicPlaying){
+                        music.setIcon(new ImageIcon(((new ImageIcon("images/UI/music.png")).getImage()).getScaledInstance(40,40, java.awt.Image.SCALE_SMOOTH)));
+                    }
+                    else{
+                        music.setIcon(new ImageIcon(((new ImageIcon("images/UI/musicOff.png")).getImage()).getScaledInstance(40,40, java.awt.Image.SCALE_SMOOTH)));
+                    }
                 }
-                else{
-                    music.setIcon(new ImageIcon(((new ImageIcon("images/UI/musicOff.png")).getImage()).getScaledInstance(40,40, java.awt.Image.SCALE_SMOOTH)));
-                }
-            }
-        });
+            });
         PANEL.add(music);
 
         JLabel credits = new JLabel(new ImageIcon(((new ImageIcon("images/UI/credit.png")).getImage()).getScaledInstance(123,41, java.awt.Image.SCALE_SMOOTH)));
@@ -151,83 +150,83 @@ public class Ui
         credits.setBounds(30, 591, 123, 41);
         credits.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         credits.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                JFrame popup = new JFrame();
-                //popup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                Dimension size = new Dimension(500, 600);
-                popup.setPreferredSize(size);
-                popup.setMinimumSize(size);
-                popup.setMaximumSize(size);
-                popup.setResizable(false);
-                popup.setBackground(Color.WHITE);
-                //frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("images/UI/icon.png")));
-                ImageIcon img = new ImageIcon("images/UI/icon.png");
-                popup.setIconImage(img.getImage());
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    JFrame popup = new JFrame();
+                    //popup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    Dimension size = new Dimension(500, 600);
+                    popup.setPreferredSize(size);
+                    popup.setMinimumSize(size);
+                    popup.setMaximumSize(size);
+                    popup.setResizable(false);
+                    popup.setBackground(Color.WHITE);
+                    //frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("images/UI/icon.png")));
+                    ImageIcon img = new ImageIcon("images/UI/icon.png");
+                    popup.setIconImage(img.getImage());
 
-                JPanel popupPanel = new JPanel();
-                popupPanel.setBackground(Color.WHITE);
-                popupPanel.setLayout(null);
+                    JPanel popupPanel = new JPanel();
+                    popupPanel.setBackground(Color.WHITE);
+                    popupPanel.setLayout(null);
 
-                JLabel title = new JLabel("credits", SwingConstants.LEFT);
-                try {
-                    title.setFont(getFont("Koulen-Regular.ttf", 50f));
-                } catch (FontFormatException ioException) {
-                    ioException.printStackTrace();
-                }
-                title.setBounds(30, 30, 440, 70);
-                title.setOpaque(false);
-                popupPanel.add(title);
+                    JLabel title = new JLabel("credits", SwingConstants.LEFT);
+                    try {
+                        title.setFont(getFont("Koulen-Regular.ttf", 50f));
+                    } catch (FontFormatException ioException) {
+                        ioException.printStackTrace();
+                    }
+                    title.setBounds(30, 30, 440, 70);
+                    title.setOpaque(false);
+                    popupPanel.add(title);
 
-                JLabel coded = new JLabel("coded by Lars, Philipp & Felix", SwingConstants.LEFT);
-        
-                coded.setFont(FONT_KOULEN_22);
-                
-                coded.setBounds(30, 100, 440, 70);
-                coded.setOpaque(false);
-                popupPanel.add(coded);
+                    JLabel coded = new JLabel("coded by Lars, Philipp & Felix", SwingConstants.LEFT);
 
-                JLabel music = new JLabel("Music by soundimage.org", SwingConstants.LEFT);
-                
+                    coded.setFont(FONT_KOULEN_22);
+
+                    coded.setBounds(30, 100, 440, 70);
+                    coded.setOpaque(false);
+                    popupPanel.add(coded);
+
+                    JLabel music = new JLabel("Music by soundimage.org", SwingConstants.LEFT);
+
                     music.setFont(FONT_KOULEN_22);
-                
-                music.setBounds(30, 170, 440, 70);
-                music.setOpaque(false);
-                popupPanel.add(music);
 
-                JLabel images = new JLabel("country images by worldle.teuteuf.fr", SwingConstants.LEFT);
-                
+                    music.setBounds(30, 170, 440, 70);
+                    music.setOpaque(false);
+                    popupPanel.add(music);
+
+                    JLabel images = new JLabel("country images by worldle.teuteuf.fr", SwingConstants.LEFT);
+
                     images.setFont(FONT_KOULEN_22);
-                images.setBounds(30, 240, 440, 70);
-                images.setOpaque(false);
-                popupPanel.add(images);
+                    images.setBounds(30, 240, 440, 70);
+                    images.setOpaque(false);
+                    popupPanel.add(images);
 
-                JLabel info = new JLabel("country info by wikipedia.org", SwingConstants.LEFT);
-                
+                    JLabel info = new JLabel("country info by wikipedia.org", SwingConstants.LEFT);
+
                     info.setFont(FONT_KOULEN_22);
-                info.setBounds(30, 310, 440, 70);
-                info.setOpaque(false);
-                popupPanel.add(info);
+                    info.setBounds(30, 310, 440, 70);
+                    info.setOpaque(false);
+                    popupPanel.add(info);
 
-                JLabel github = new JLabel("github.com/Informatik2022Java", SwingConstants.CENTER);
-                
+                    JLabel github = new JLabel("github.com/Informatik2022Java", SwingConstants.CENTER);
+
                     github.setFont(FONT_KOULEN_22);
-                github.setBounds(30, 410, 440, 70);
-                github.setOpaque(false);
-                popupPanel.add(github);
+                    github.setBounds(30, 410, 440, 70);
+                    github.setOpaque(false);
+                    popupPanel.add(github);
 
-                JLabel thanks = new JLabel("thanks for playing :)", SwingConstants.CENTER);
-                
+                    JLabel thanks = new JLabel("thanks for playing :)", SwingConstants.CENTER);
+
                     thanks.setFont(FONT_KOULEN_22);
-                thanks.setBounds(30, 480, 440, 70);
-                thanks.setOpaque(false);
-                popupPanel.add(thanks);
+                    thanks.setBounds(30, 480, 440, 70);
+                    thanks.setOpaque(false);
+                    popupPanel.add(thanks);
 
-                popup.add(popupPanel);
-                popup.pack();
-                popup.setVisible(true);
-            }
-        });
+                    popup.add(popupPanel);
+                    popup.pack();
+                    popup.setVisible(true);
+                }
+            });
         PANEL.add(credits);
 
         PANEL.validate();
@@ -247,7 +246,7 @@ public class Ui
 
     public static JComponent[] game(LinkedList guesses, Country solution, Vector2 player, int round){
         //player: x = number of all players, y = current player
-        System.out.println("game: " + solution.getName());
+        //System.out.println("game: " + solution.getName());
         boolean guessed = false;
         for(int i = 0; i < guesses.size(); i++){
             if(((Guess)(guesses.get(i))).getName().equals(solution.getName())){
@@ -422,14 +421,14 @@ public class Ui
                         popupPanel.add(title);
 
                         JLabel wikipedia = new JLabel("wikipedia:", SwingConstants.LEFT);
-                        
-                            wikipedia.setFont(FONT_KOULEN_22);
+
+                        wikipedia.setFont(FONT_KOULEN_22);
                         wikipedia.setBounds(30, 100, 440, 70);
                         popupPanel.add(wikipedia);
 
                         JButton maps = new JButton("maps");
                         maps.setBounds(660, 47, 110, 37);
-                            maps.setFont(FONT_KOULEN_22);
+                        maps.setFont(FONT_KOULEN_22);
                         maps.setBorderPainted(false);
                         maps.setFocusPainted(false);
                         //btn.setContentAreaFilled(false);
@@ -437,11 +436,11 @@ public class Ui
                         maps.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                         maps.setForeground(Color.WHITE);
                         maps.addMouseListener(new MouseAdapter() {
-                            @Override
-                            public void mouseClicked(MouseEvent e) {
-                                openWebpage("https://www.google.com/maps/place/" + solution.getName().replace(" ", "%20"));
-                            }
-                        });
+                                @Override
+                                public void mouseClicked(MouseEvent e) {
+                                    openWebpage("https://www.google.com/maps/place/" + solution.getName().replace(" ", "%20"));
+                                }
+                            });
                         popupPanel.add(maps);
 
                         popup.add(popupPanel);
@@ -480,32 +479,32 @@ public class Ui
         out.setBounds(169,119,733,543);
         out.setLayout(null);
         out.setBackground(new Color(0,0,0,0));
-        
+
         JLabel outText = new JLabel("<html><p>Player " + (number+1) + " is out</p></html>", SwingConstants.CENTER);
         outText.setFont(FONT_KOULEN_73);
         outText.setBounds(0,0,733,469);
         outText.setOpaque(false);
         out.add(outText);
-        
+
         PANEL.add(out, 1, 0);
 
         PANEL.validate();
         PANEL.repaint();
         PANEL.revalidate();
     }
-    
+
     public static JComponent[] playerWon(int number){
         JPanel won = new JPanel();
         won.setBounds(169,119,733,543);
         won.setLayout(null);
         won.setBackground(new Color(0,0,0,0));
-        
+
         JLabel player = new JLabel("<html><p>Player " + (number+1) + " won</p></html>", SwingConstants.CENTER);
         player.setFont(FONT_KOULEN_73);
         player.setBounds(0,0,733,469);
         player.setOpaque(false);
         won.add(player);
-        
+
         JButton newGame = new JButton("new game");
         newGame.setBounds(244, 469, 235, 37);
         newGame.setFont(FONT_KOULEN_22);
@@ -516,13 +515,13 @@ public class Ui
         newGame.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         newGame.setForeground(Color.WHITE);
         won.add(newGame);
-        
+
         PANEL.add(won, 1, 0);
 
         PANEL.validate();
         PANEL.repaint();
         PANEL.revalidate();
-        
+
         JComponent[] list = new JComponent[1];
         list[0] = newGame;
         return list;
@@ -530,21 +529,21 @@ public class Ui
 
     public static Font getFont(String name, float size) throws FontFormatException{
         try
-            {
-                // System.out.println("get font: " + name + " " + size);
-        
+        {
+            // System.out.println("get font: " + name + " " + size);
+
             Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/" + name)).deriveFont(size);
-            
-             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             //register the font
             ge.registerFont(customFont);
             return customFont;
-            }
-            catch (IOException ioe)
-            {
-                ioe.printStackTrace();
-            }
-           
+        }
+        catch (IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+
         return null;
     }
 

@@ -60,10 +60,10 @@ public abstract class Graph
 
     public Vector2 costAndSteps(String startId, String endId){
         if(!pathExists(startId,endId)){
-            System.out.println("no path");
+            //System.out.println("no path");
             return new Vector2(-1,-1);
         }
-        System.out.println("found path");
+        //System.out.println("found path");
 
         /*
          * DIJKSTRA ALGORITHMUS 
@@ -121,7 +121,7 @@ public abstract class Graph
             steps++;
         }
 
-        System.out.println((int)costs.get(endIdx) + ": " + steps);
+        //System.out.println((int)costs.get(endIdx) + ": " + steps);
         return new Vector2((int)costs.get(endIdx), steps);
     }
 
@@ -134,9 +134,9 @@ public abstract class Graph
     }
 
     private boolean pathExistsIdx(int startIdx, int endIdx, LinkedList visited){
-        System.out.println("> searching path: " + startIdx + "-" + endIdx);
+        //System.out.println("> searching path: " + startIdx + "-" + endIdx);
         visited.add(startIdx);
-        System.out.println(edges[startIdx][endIdx]);
+        //System.out.println(edges[startIdx][endIdx]);
         if (startIdx == endIdx){
             return true;
         }

@@ -79,7 +79,7 @@ public class Game
 
         btn.addActionListener(e -> {
                 String text = input.getText();
-                System.out.println("number of players: " + text);
+                //System.out.println("number of players: " + text);
                 numberOfPlayers = 1;
 
                 try{
@@ -103,7 +103,7 @@ public class Game
 
     //main game method, called after each event
     public void game(){
-        System.out.println("game for " + numberOfPlayers + " players: updated frame");
+        //ySystem.out.println("game for " + numberOfPlayers + " players: updated frame");
         Ui.clear();
 
         JComponent[] components = Ui.game(guesses, solution, new Vector2(numberOfPlayers, turn + 1), round);
@@ -152,7 +152,7 @@ public class Game
                     else{
                         Country country = (Country)countries.getVertex(input);
                         Vector2 distAndSteps = countries.costAndSteps(country.getId(), solution.getId());
-                        countries.printMatrix();
+                        //countries.printMatrix();
                         //System.out.println(country.getId());
                         //System.out.println(distAndSteps.x + " " + distAndSteps.y);
 
@@ -199,7 +199,7 @@ public class Game
 
                                             JButton newGame = (JButton)Ui.playerWon(index)[0];
                                             newGame.addActionListener(e1 -> {
-                                                    System.out.println("click");
+                                                    //System.out.println("click");
                                                     Ui.clear();
                                                     try
                                                     {
@@ -236,7 +236,7 @@ public class Game
                     int count = guesses.size();
 
                     if(count == 6-1){
-                        Music.playMusic("music/fail.wav", false);
+                        //Music.playMusic("music/fail.wav", false);
                         guesses.add(new Guess(input, (int)distAndSteps.x, (int)distAndSteps.y));
                     }
                     else if(count > 6-1){
