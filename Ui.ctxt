@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Ui
-comment0.text=\r\n\ \r\n\ \ general\ idea\:\r\n\ \ Ui\ methods\ are\ called\ when\ they\ should\ diaplay\ something\r\n\ \ Methods\ return\ all\ important\ components\ like\ buttons,\ inputfields\ etc\r\n\ \ Game-class\ adds\ eventlistener\ ->\ all\ data\ could\ be\ easyly\ stored\ in\ game-class\r\n\ \r\n
+comment0.text=\r\n\ \r\n\ \ general\ idea\:\r\n\ \ Ui\ methods\ are\ called\ when\ they\ should\ diaplay\ something\r\n\ \ Methods\ return\ all\ important\ components\ like\ buttons,\ inputfields\ etc\r\n\ \ Game-class\ adds\ eventlistener\ ->\ all\ data\ could\ be\ easyly\ stored\ in\ game-class\r\n\ \r\n\ \ static\ so\ every\ class\ can\ control\ the\ UI\ without\ having\ to\ reference\ it\r\n
 comment1.params=
 comment1.target=void\ start()
 comment10.params=e

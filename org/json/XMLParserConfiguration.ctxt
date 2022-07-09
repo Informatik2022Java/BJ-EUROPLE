@@ -1,0 +1,55 @@
+#BlueJ class context
+comment0.target=XMLParserConfiguration
+comment0.text=\r\n\ Configuration\ object\ for\ the\ XML\ parser.\ The\ configuration\ is\ immutable.\r\n\ @author\ AylwardJ\r\n
+comment1.params=
+comment1.target=XMLParserConfiguration()
+comment1.text=\r\n\ Default\ parser\ configuration.\ Does\ not\ keep\ strings\ (tries\ to\ implicitly\ convert\r\n\ values),\ and\ the\ CDATA\ Tag\ Name\ is\ "content".\r\n
+comment10.params=
+comment10.target=java.lang.String\ getcDataTagName()
+comment10.text=\r\n\ The\ name\ of\ the\ key\ in\ a\ JSON\ Object\ that\ indicates\ a\ CDATA\ section.\ Historically\ this\ has\r\n\ been\ the\ value\ "content"\ but\ can\ be\ changed.\ Use\ <code>null</code>\ to\ indicate\ no\ CDATA\r\n\ processing.\r\n\ \r\n\ @return\ The\ <code>cDataTagName</code>\ configuration\ value.\r\n
+comment11.params=newVal
+comment11.target=XMLParserConfiguration\ withcDataTagName(java.lang.String)
+comment11.text=\r\n\ The\ name\ of\ the\ key\ in\ a\ JSON\ Object\ that\ indicates\ a\ CDATA\ section.\ Historically\ this\ has\r\n\ been\ the\ value\ "content"\ but\ can\ be\ changed.\ Use\ <code>null</code>\ to\ indicate\ no\ CDATA\r\n\ processing.\r\n\ \r\n\ @param\ newVal\r\n\ \ \ \ \ \ new\ value\ to\ use\ for\ the\ <code>cDataTagName</code>\ configuration\ option.\r\n\ \r\n\ @return\ The\ existing\ configuration\ will\ not\ be\ modified.\ A\ new\ configuration\ is\ returned.\r\n
+comment12.params=
+comment12.target=boolean\ isConvertNilAttributeToNull()
+comment12.text=\r\n\ When\ parsing\ the\ XML\ into\ JSON,\ specifies\ if\ values\ with\ attribute\ xsi\:nil\="true"\r\n\ should\ be\ kept\ as\ attribute(<code>false</code>),\ or\ they\ should\ be\ converted\ to\r\n\ <code>null</code>(<code>true</code>)\r\n\ \r\n\ @return\ The\ <code>convertNilAttributeToNull</code>\ configuration\ value.\r\n
+comment13.params=newVal
+comment13.target=XMLParserConfiguration\ withConvertNilAttributeToNull(boolean)
+comment13.text=\r\n\ When\ parsing\ the\ XML\ into\ JSON,\ specifies\ if\ values\ with\ attribute\ xsi\:nil\="true"\r\n\ should\ be\ kept\ as\ attribute(<code>false</code>),\ or\ they\ should\ be\ converted\ to\r\n\ <code>null</code>(<code>true</code>)\r\n\ \r\n\ @param\ newVal\r\n\ \ \ \ \ \ new\ value\ to\ use\ for\ the\ <code>convertNilAttributeToNull</code>\ configuration\ option.\r\n\ \r\n\ @return\ The\ existing\ configuration\ will\ not\ be\ modified.\ A\ new\ configuration\ is\ returned.\r\n
+comment14.params=
+comment14.target=java.util.Map\ getXsiTypeMap()
+comment14.text=\r\n\ When\ parsing\ the\ XML\ into\ JSON,\ specifies\ that\ the\ values\ with\ attribute\ xsi\:type\r\n\ will\ be\ converted\ to\ target\ type\ defined\ to\ client\ in\ this\ configuration\r\n\ {@code\ Map<String,\ XMLXsiTypeConverter<?>>}\ to\ parse\ values\ with\ attribute\r\n\ xsi\:type\="integer"\ as\ integer,\ \ xsi\:type\="string"\ as\ string\r\n\ @return\ <code>xsiTypeMap</code>\ unmodifiable\ configuration\ map.\r\n
+comment15.params=xsiTypeMap
+comment15.target=XMLParserConfiguration\ withXsiTypeMap(java.util.Map)
+comment15.text=\r\n\ When\ parsing\ the\ XML\ into\ JSON,\ specifies\ that\ the\ values\ with\ attribute\ xsi\:type\r\n\ will\ be\ converted\ to\ target\ type\ defined\ to\ client\ in\ this\ configuration\r\n\ {@code\ Map<String,\ XMLXsiTypeConverter<?>>}\ to\ parse\ values\ with\ attribute\r\n\ xsi\:type\="integer"\ as\ integer,\ \ xsi\:type\="string"\ as\ string\r\n\ @param\ xsiTypeMap\ \ {@code\ new\ HashMap<String,\ XMLXsiTypeConverter<?>>()}\ to\ parse\ values\ with\ attribute\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xsi\:type\="integer"\ as\ integer,\ \ xsi\:type\="string"\ as\ string\r\n\ @return\ The\ existing\ configuration\ will\ not\ be\ modified.\ A\ new\ configuration\ is\ returned.\r\n
+comment16.params=
+comment16.target=java.util.Set\ getForceList()
+comment16.text=\r\n\ When\ parsing\ the\ XML\ into\ JSON,\ specifies\ that\ tags\ that\ will\ be\ converted\ to\ arrays\r\n\ in\ this\ configuration\ {@code\ Set<String>}\ to\ parse\ the\ provided\ tags'\ values\ as\ arrays\ \r\n\ @return\ <code>forceList</code>\ unmodifiable\ configuration\ set.\r\n
+comment17.params=forceList
+comment17.target=XMLParserConfiguration\ withForceList(java.util.Set)
+comment17.text=\r\n\ When\ parsing\ the\ XML\ into\ JSON,\ specifies\ that\ tags\ that\ will\ be\ converted\ to\ arrays\r\n\ in\ this\ configuration\ {@code\ Set<String>}\ to\ parse\ the\ provided\ tags'\ values\ as\ arrays\ \r\n\ @param\ forceList\ \ {@code\ new\ HashSet<String>()}\ to\ parse\ the\ provided\ tags'\ values\ as\ arrays\ \r\n\ @return\ The\ existing\ configuration\ will\ not\ be\ modified.\ A\ new\ configuration\ is\ returned.\r\n
+comment2.params=keepStrings
+comment2.target=XMLParserConfiguration(boolean)
+comment2.text=\r\n\ Configure\ the\ parser\ string\ processing\ and\ use\ the\ default\ CDATA\ Tag\ Name\ as\ "content".\r\n\ @param\ keepStrings\ <code>true</code>\ to\ parse\ all\ values\ as\ string.\r\n\ \ \ \ \ \ <code>false</code>\ to\ try\ and\ convert\ XML\ string\ values\ into\ a\ JSON\ value.\r\n\ @deprecated\ This\ constructor\ has\ been\ deprecated\ in\ favor\ of\ using\ the\ new\ builder\r\n\ \ \ \ \ \ pattern\ for\ the\ configuration.\r\n\ \ \ \ \ \ This\ constructor\ may\ be\ removed\ in\ a\ future\ release.\r\n
+comment3.params=cDataTagName
+comment3.target=XMLParserConfiguration(java.lang.String)
+comment3.text=\r\n\ Configure\ the\ parser\ string\ processing\ to\ try\ and\ convert\ XML\ values\ to\ JSON\ values\ and\r\n\ use\ the\ passed\ CDATA\ Tag\ Name\ the\ processing\ value.\ Pass\ <code>null</code>\ to\r\n\ disable\ CDATA\ processing\r\n\ @param\ cDataTagName\ <code>null</code>\ to\ disable\ CDATA\ processing.\ Any\ other\ value\r\n\ \ \ \ \ \ to\ use\ that\ value\ as\ the\ JSONObject\ key\ name\ to\ process\ as\ CDATA.\r\n\ @deprecated\ This\ constructor\ has\ been\ deprecated\ in\ favor\ of\ using\ the\ new\ builder\r\n\ \ \ \ \ \ pattern\ for\ the\ configuration.\r\n\ \ \ \ \ \ This\ constructor\ may\ be\ removed\ in\ a\ future\ release.\r\n
+comment4.params=keepStrings\ cDataTagName
+comment4.target=XMLParserConfiguration(boolean,\ java.lang.String)
+comment4.text=\r\n\ Configure\ the\ parser\ to\ use\ custom\ settings.\r\n\ @param\ keepStrings\ <code>true</code>\ to\ parse\ all\ values\ as\ string.\r\n\ \ \ \ \ \ <code>false</code>\ to\ try\ and\ convert\ XML\ string\ values\ into\ a\ JSON\ value.\r\n\ @param\ cDataTagName\ <code>null</code>\ to\ disable\ CDATA\ processing.\ Any\ other\ value\r\n\ \ \ \ \ \ to\ use\ that\ value\ as\ the\ JSONObject\ key\ name\ to\ process\ as\ CDATA.\r\n\ @deprecated\ This\ constructor\ has\ been\ deprecated\ in\ favor\ of\ using\ the\ new\ builder\r\n\ \ \ \ \ \ pattern\ for\ the\ configuration.\r\n\ \ \ \ \ \ This\ constructor\ may\ be\ removed\ in\ a\ future\ release.\r\n
+comment5.params=keepStrings\ cDataTagName\ convertNilAttributeToNull
+comment5.target=XMLParserConfiguration(boolean,\ java.lang.String,\ boolean)
+comment5.text=\r\n\ Configure\ the\ parser\ to\ use\ custom\ settings.\r\n\ @param\ keepStrings\ <code>true</code>\ to\ parse\ all\ values\ as\ string.\r\n\ \ \ \ \ \ <code>false</code>\ to\ try\ and\ convert\ XML\ string\ values\ into\ a\ JSON\ value.\r\n\ @param\ cDataTagName\ <code>null</code>\ to\ disable\ CDATA\ processing.\ Any\ other\ value\r\n\ \ \ \ \ \ to\ use\ that\ value\ as\ the\ JSONObject\ key\ name\ to\ process\ as\ CDATA.\r\n\ @param\ convertNilAttributeToNull\ <code>true</code>\ to\ parse\ values\ with\ attribute\ xsi\:nil\="true"\ as\ null.\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <code>false</code>\ to\ parse\ values\ with\ attribute\ xsi\:nil\="true"\ as\ {"xsi\:nil"\:true}.\r\n\ @deprecated\ This\ constructor\ has\ been\ deprecated\ in\ favor\ of\ using\ the\ new\ builder\r\n\ \ \ \ \ \ pattern\ for\ the\ configuration.\r\n\ \ \ \ \ \ This\ constructor\ may\ be\ removed\ or\ marked\ private\ in\ a\ future\ release.\r\n
+comment6.params=keepStrings\ cDataTagName\ convertNilAttributeToNull\ xsiTypeMap\ forceList
+comment6.target=XMLParserConfiguration(boolean,\ java.lang.String,\ boolean,\ java.util.Map,\ java.util.Set)
+comment6.text=\r\n\ Configure\ the\ parser\ to\ use\ custom\ settings.\r\n\ @param\ keepStrings\ <code>true</code>\ to\ parse\ all\ values\ as\ string.\r\n\ \ \ \ \ \ <code>false</code>\ to\ try\ and\ convert\ XML\ string\ values\ into\ a\ JSON\ value.\r\n\ @param\ cDataTagName\ <code>null</code>\ to\ disable\ CDATA\ processing.\ Any\ other\ value\r\n\ \ \ \ \ \ to\ use\ that\ value\ as\ the\ JSONObject\ key\ name\ to\ process\ as\ CDATA.\r\n\ @param\ convertNilAttributeToNull\ <code>true</code>\ to\ parse\ values\ with\ attribute\ xsi\:nil\="true"\ as\ null.\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <code>false</code>\ to\ parse\ values\ with\ attribute\ xsi\:nil\="true"\ as\ {"xsi\:nil"\:true}.\r\n\ @param\ xsiTypeMap\ \ <code>new\ HashMap<String,\ XMLXsiTypeConverter<?>>()</code>\ to\ parse\ values\ with\ attribute\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xsi\:type\="integer"\ as\ integer,\ \ xsi\:type\="string"\ as\ string\r\n\ @param\ forceList\ \ <code>new\ HashSet<String>()</code>\ to\ parse\ the\ provided\ tags'\ values\ as\ arrays\ \r\n
+comment7.params=
+comment7.target=XMLParserConfiguration\ clone()
+comment7.text=\r\n\ Provides\ a\ new\ instance\ of\ the\ same\ configuration.\r\n
+comment8.params=
+comment8.target=boolean\ isKeepStrings()
+comment8.text=\r\n\ When\ parsing\ the\ XML\ into\ JSON,\ specifies\ if\ values\ should\ be\ kept\ as\ strings\ (<code>true</code>),\ or\ if\r\n\ they\ should\ try\ to\ be\ guessed\ into\ JSON\ values\ (numeric,\ boolean,\ string)\r\n\ \r\n\ @return\ The\ <code>keepStrings</code>\ configuration\ value.\r\n
+comment9.params=newVal
+comment9.target=XMLParserConfiguration\ withKeepStrings(boolean)
+comment9.text=\r\n\ When\ parsing\ the\ XML\ into\ JSON,\ specifies\ if\ values\ should\ be\ kept\ as\ strings\ (<code>true</code>),\ or\ if\r\n\ they\ should\ try\ to\ be\ guessed\ into\ JSON\ values\ (numeric,\ boolean,\ string)\r\n\ \r\n\ @param\ newVal\r\n\ \ \ \ \ \ new\ value\ to\ use\ for\ the\ <code>keepStrings</code>\ configuration\ option.\r\n\ \r\n\ @return\ The\ existing\ configuration\ will\ not\ be\ modified.\ A\ new\ configuration\ is\ returned.\r\n
+numComments=18
