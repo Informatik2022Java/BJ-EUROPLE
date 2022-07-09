@@ -44,7 +44,7 @@ public class API {
                 }
             }
             catch (IOException ex){
-                System.out.println(ex);
+                ex.printStackTrace();
             }
 
             //System.out.println("text = " + text);
@@ -53,7 +53,7 @@ public class API {
             return result;
         }
         catch(MalformedURLException e){
-
+            e.printStackTrace();
         }
         return "error";
     }

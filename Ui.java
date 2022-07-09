@@ -36,6 +36,11 @@ public class Ui
 {
     public static JFrame FRAME;
     private static JLayeredPane PANEL;
+    
+    private static Font FONT_KOULEN_22;
+    private static Font FONT_KOULEN_30;
+    private static Font FONT_KOULEN_40;
+    private static Font FONT_KOULEN_73;
 
     public static void start(){
         FRAME = new JFrame("EUROPLE");
@@ -54,6 +59,20 @@ public class Ui
         PANEL.setBackground(Color.WHITE);
         PANEL.setLayout(null);
         PANEL.setOpaque(true);
+        
+        
+        try
+        {
+            FONT_KOULEN_22 = getFont("Koulen-Regular.ttf", 22f);
+            FONT_KOULEN_30 = getFont("Koulen-Regular.ttf", 30f);
+            FONT_KOULEN_40 = getFont("Koulen-Regular.ttf", 40f);
+            FONT_KOULEN_73 = getFont("Koulen-Regular.ttf", 73f);
+            System.out.println("loaded fonts");
+        }
+        catch (FontFormatException ffe)
+        {
+            ffe.printStackTrace();
+        }        
 
         FRAME.add(PANEL);
         FRAME.pack();
@@ -79,7 +98,7 @@ public class Ui
         PANEL.revalidate();
     }
 
-    public static JComponent[] playerAmountSelect() throws IOException {
+    public static JComponent[] playerAmountSelect(){
         Font customFont;
 
         JLabel logo = new JLabel(new ImageIcon(((new ImageIcon("images/ui/logo2.png")).getImage()).getScaledInstance(264,120, java.awt.Image.SCALE_SMOOTH)));
@@ -88,12 +107,12 @@ public class Ui
 
         JTextField input = new JTextField("1");
         input.setPreferredSize(new Dimension(200,40));
-        input.setFont(getFont("Koulen-Regular.ttf", 22f));
+        input.setFont(FONT_KOULEN_22);
         input.setBounds(436,295,200,40);
 
         JButton btn = new JButton("start");
         btn.setBounds(436, 344,200,40);
-        btn.setFont(getFont("Koulen-Regular.ttf", 30f));
+        btn.setFont(FONT_KOULEN_30);
         btn.setBorderPainted(false);
         btn.setFocusPainted(false);
         btn.setBackground(Color.decode("#4E9424"));
@@ -105,7 +124,7 @@ public class Ui
         PANEL.add(logo);
 
         JLabel country = new JLabel("please enter the number of players", SwingConstants.CENTER);
-        country.setFont(getFont("Koulen-Regular.ttf", 40f));
+        country.setFont(FONT_KOULEN_40);
         country.setBounds(0,182,1071,50);
         PANEL.add(country);
 
@@ -153,7 +172,7 @@ public class Ui
                 JLabel title = new JLabel("credits", SwingConstants.LEFT);
                 try {
                     title.setFont(getFont("Koulen-Regular.ttf", 50f));
-                } catch (IOException ioException) {
+                } catch (FontFormatException ioException) {
                     ioException.printStackTrace();
                 }
                 title.setBounds(30, 30, 440, 70);
@@ -161,61 +180,45 @@ public class Ui
                 popupPanel.add(title);
 
                 JLabel coded = new JLabel("coded by Lars, Philipp & Felix", SwingConstants.LEFT);
-                try {
-                    coded.setFont(getFont("Koulen-Regular.ttf", 22f));
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
+        
+                coded.setFont(FONT_KOULEN_22);
+                
                 coded.setBounds(30, 100, 440, 70);
                 coded.setOpaque(false);
                 popupPanel.add(coded);
 
                 JLabel music = new JLabel("Music by soundimage.org", SwingConstants.LEFT);
-                try {
-                    music.setFont(getFont("Koulen-Regular.ttf", 22f));
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
+                
+                    music.setFont(FONT_KOULEN_22);
+                
                 music.setBounds(30, 170, 440, 70);
                 music.setOpaque(false);
                 popupPanel.add(music);
 
                 JLabel images = new JLabel("country images by worldle.teuteuf.fr", SwingConstants.LEFT);
-                try {
-                    images.setFont(getFont("Koulen-Regular.ttf", 22f));
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
+                
+                    images.setFont(FONT_KOULEN_22);
                 images.setBounds(30, 240, 440, 70);
                 images.setOpaque(false);
                 popupPanel.add(images);
 
                 JLabel info = new JLabel("country info by wikipedia.org", SwingConstants.LEFT);
-                try {
-                    info.setFont(getFont("Koulen-Regular.ttf", 22f));
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
+                
+                    info.setFont(FONT_KOULEN_22);
                 info.setBounds(30, 310, 440, 70);
                 info.setOpaque(false);
                 popupPanel.add(info);
 
                 JLabel github = new JLabel("github.com/Informatik2022Java", SwingConstants.CENTER);
-                try {
-                    github.setFont(getFont("Koulen-Regular.ttf", 22f));
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
+                
+                    github.setFont(FONT_KOULEN_22);
                 github.setBounds(30, 410, 440, 70);
                 github.setOpaque(false);
                 popupPanel.add(github);
 
                 JLabel thanks = new JLabel("thanks for playing :)", SwingConstants.CENTER);
-                try {
-                    thanks.setFont(getFont("Koulen-Regular.ttf", 22f));
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
+                
+                    thanks.setFont(FONT_KOULEN_22);
                 thanks.setBounds(30, 480, 440, 70);
                 thanks.setOpaque(false);
                 popupPanel.add(thanks);
@@ -242,7 +245,7 @@ public class Ui
         PANEL.repaint();
     }
 
-    public static JComponent[] game(LinkedList guesses, Country solution, Vector2 player, int round) throws IOException {
+    public static JComponent[] game(LinkedList guesses, Country solution, Vector2 player, int round){
         //player: x = number of all players, y = current player
         System.out.println("game: " + solution.getName());
         boolean guessed = false;
@@ -263,17 +266,17 @@ public class Ui
         PANEL.add(outline);
 
         JLabel country = new JLabel("country", SwingConstants.CENTER);
-        country.setFont(getFont("Koulen-Regular.ttf", 22f));
+        country.setFont(FONT_KOULEN_22);
         country.setBounds(300,322,157,30);
         PANEL.add(country);
 
         JLabel distance = new JLabel("distance", SwingConstants.CENTER);
-        distance.setFont(getFont("Koulen-Regular.ttf", 22f));
+        distance.setFont(FONT_KOULEN_22);
         distance.setBounds(457,322,157,30);
         PANEL.add(distance);
 
         JLabel steps = new JLabel("steps", SwingConstants.CENTER);
-        steps.setFont(getFont("Koulen-Regular.ttf", 22f));
+        steps.setFont(FONT_KOULEN_22);
         steps.setBounds(613,322,157,30);
         PANEL.add(steps);
 
@@ -290,19 +293,19 @@ public class Ui
             PANEL.add(bar);
 
             JLabel name = new JLabel(((Guess)(guesses.get(i))).getName(), SwingConstants.CENTER);
-            name.setFont(getFont("Koulen-Regular.ttf", 22f));
+            name.setFont(FONT_KOULEN_22);
             name.setBounds(0,0,157,30);
             name.setOpaque(false);
             bar.add(name);
 
             JLabel dist = new JLabel(((Guess)(guesses.get(i))).getDistance() + "km", SwingConstants.CENTER);
-            dist.setFont(getFont("Koulen-Regular.ttf", 22f));
+            dist.setFont(FONT_KOULEN_22);
             dist.setBounds(157,0,157,30);
             dist.setOpaque(false);
             bar.add(dist);
 
             JLabel step = new JLabel(((Guess)(guesses.get(i))).getSteps() + "", SwingConstants.CENTER);
-            step.setFont(getFont("Koulen-Regular.ttf", 22f));
+            step.setFont(FONT_KOULEN_22);
             step.setBounds(314,0 ,157,30);
             step.setOpaque(false);
             bar.add(step);
@@ -318,12 +321,12 @@ public class Ui
 
         JTextField guess = new JTextField();
         guess.setBounds(300,588,235,37);
-        guess.setFont(getFont("Koulen-Regular.ttf", 22f));
+        guess.setFont(FONT_KOULEN_22);
         PANEL.add(guess);
 
         JButton btn = new JButton("guess");
         btn.setBounds(535,588,235,37);
-        btn.setFont(getFont("Koulen-Regular.ttf", 22f));
+        btn.setFont(FONT_KOULEN_22);
         btn.setBorderPainted(false);
         btn.setFocusPainted(false);
         //btn.setContentAreaFilled(false);
@@ -333,12 +336,12 @@ public class Ui
         PANEL.add(btn);
 
         JLabel playerCount = new JLabel((int)player.x + " player", SwingConstants.CENTER);
-        playerCount.setFont(getFont("Koulen-Regular.ttf", 22f));
+        playerCount.setFont(FONT_KOULEN_22);
         playerCount.setBounds(30,30,110,40);
         PANEL.add(playerCount);
 
         JLabel playerTurn = new JLabel((int)player.y + "\'s turn", SwingConstants.CENTER);
-        playerTurn.setFont(getFont("Koulen-Regular.ttf", 22f));
+        playerTurn.setFont(FONT_KOULEN_22);
         playerTurn.setBounds(30,134,110,40);
         PANEL.add(playerTurn);
 
@@ -347,7 +350,7 @@ public class Ui
             giveUp = new JButton("start");
         }
         giveUp.setBounds(30,82,110,37);
-        giveUp.setFont(getFont("Koulen-Regular.ttf", 22f));
+        giveUp.setFont(FONT_KOULEN_22);
         giveUp.setBorderPainted(false);
         giveUp.setFocusPainted(false);
         //btn.setContentAreaFilled(false);
@@ -412,28 +415,21 @@ public class Ui
                         JLabel title = new JLabel(solution.getName(), SwingConstants.LEFT);
                         try {
                             title.setFont(getFont("Koulen-Regular.ttf", 50f));
-                        } catch (IOException ioException) {
-                            ioException.printStackTrace();
+                        } catch (Exception f) {
+                            f.printStackTrace();
                         }
                         title.setBounds(30,30,440, 70);
                         popupPanel.add(title);
 
                         JLabel wikipedia = new JLabel("wikipedia:", SwingConstants.LEFT);
-                        try {
-                            wikipedia.setFont(getFont("Koulen-Regular.ttf", 22f));
-                        } catch (IOException ioException) {
-                            ioException.printStackTrace();
-                        }
+                        
+                            wikipedia.setFont(FONT_KOULEN_22);
                         wikipedia.setBounds(30, 100, 440, 70);
                         popupPanel.add(wikipedia);
 
                         JButton maps = new JButton("maps");
                         maps.setBounds(660, 47, 110, 37);
-                        try {
-                            maps.setFont(getFont("Koulen-Regular.ttf", 22f));
-                        } catch (IOException ioException) {
-                            ioException.printStackTrace();
-                        }
+                            maps.setFont(FONT_KOULEN_22);
                         maps.setBorderPainted(false);
                         maps.setFocusPainted(false);
                         //btn.setContentAreaFilled(false);
@@ -468,33 +464,9 @@ public class Ui
         return list;
     }
 
-    public static Font getFont(String name, float size) throws IOException {
-        // System.out.println("get font: " + name + " " + size);
-        try
-        {
-            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/" + name)).deriveFont(size);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            //register the font
-            ge.registerFont(customFont);
-            return customFont;
-        }
-        catch (FontFormatException ffe)
-        {
-            return null;
-        }
-    }
-
-    public static void openWebpage(String urlString) {
-        try {
-            Desktop.getDesktop().browse(new URL(urlString).toURI());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void countryNotFound(String notFoundCountry) throws IOException {
+    public static void countryNotFound(String notFoundCountry){
         JLabel notFound = new JLabel("<html><p>no country: " + notFoundCountry + "</p></html>", SwingConstants.CENTER);
-        notFound.setFont(getFont("Koulen-Regular.ttf", 22f));
+        notFound.setFont(FONT_KOULEN_22);
         notFound.setBounds(30,532,110,100);
         PANEL.add(notFound);
 
@@ -503,14 +475,14 @@ public class Ui
         PANEL.revalidate();
     }
 
-    public static void playerLost(int number) throws IOException{
+    public static void playerLost(int number){
         JPanel out = new JPanel();
         out.setBounds(169,119,733,543);
         out.setLayout(null);
         out.setBackground(new Color(0,0,0,0));
         
         JLabel outText = new JLabel("<html><p>Player " + (number+1) + " is out</p></html>", SwingConstants.CENTER);
-        outText.setFont(getFont("Koulen-Regular.ttf", 73f));
+        outText.setFont(FONT_KOULEN_73);
         outText.setBounds(0,0,733,469);
         outText.setOpaque(false);
         out.add(outText);
@@ -522,22 +494,21 @@ public class Ui
         PANEL.revalidate();
     }
     
-    public static JComponent[] playerWon(int number) throws IOException{
+    public static JComponent[] playerWon(int number){
         JPanel won = new JPanel();
         won.setBounds(169,119,733,543);
         won.setLayout(null);
         won.setBackground(new Color(0,0,0,0));
         
         JLabel player = new JLabel("<html><p>Player " + (number+1) + " won</p></html>", SwingConstants.CENTER);
-        player.setFont(getFont("Koulen-Regular.ttf", 73f));
+        player.setFont(FONT_KOULEN_73);
         player.setBounds(0,0,733,469);
         player.setOpaque(false);
         won.add(player);
         
-        
         JButton newGame = new JButton("new game");
         newGame.setBounds(244, 469, 235, 37);
-        newGame.setFont(getFont("Koulen-Regular.ttf", 22f));
+        newGame.setFont(FONT_KOULEN_22);
         newGame.setBorderPainted(false);
         newGame.setFocusPainted(false);
         //btn.setContentAreaFilled(false);
@@ -555,5 +526,33 @@ public class Ui
         JComponent[] list = new JComponent[1];
         list[0] = newGame;
         return list;
+    }
+
+    public static Font getFont(String name, float size) throws FontFormatException{
+        try
+            {
+                // System.out.println("get font: " + name + " " + size);
+        
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/" + name)).deriveFont(size);
+            
+             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            //register the font
+            ge.registerFont(customFont);
+            return customFont;
+            }
+            catch (IOException ioe)
+            {
+                ioe.printStackTrace();
+            }
+           
+        return null;
+    }
+
+    public static void openWebpage(String urlString) {
+        try {
+            Desktop.getDesktop().browse(new URL(urlString).toURI());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

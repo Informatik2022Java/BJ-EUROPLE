@@ -1,3 +1,4 @@
+//simple 2d Vector to store data like coords
 public class Vector2
 {       
     public float x;

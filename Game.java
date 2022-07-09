@@ -22,7 +22,7 @@ public class Game
         Ui.start();
         Ui.loading();
         Music.playMusic("music/gamemusic.wav", true);
-        
+
         //get data from API using the country-names
         for (String[] line : data) {
             String name = line[0];
@@ -33,17 +33,16 @@ public class Game
                 e.printStackTrace();
             }
             //System.out.println(json);
-            
+
             //extract actual data from json
             String id = Json.getCca3(json);
             Vector2 pos = Json.getLatLngCapital(json);
             String[] borders = Json.getBorders(json);
-            
+
             countries.add(new Country(name.toUpperCase(), id, pos, new LinkedList(borders)));
         }
         //System.out.println("loaded all Countries from API");
-        
-        
+
         for(int i = 0; i < data.length; i++){
             Country curCountry = (Country)countries.get(i);
             LinkedList borders = curCountry.getBorders();
@@ -53,7 +52,7 @@ public class Game
                 Object cca = cca3;
                 //if country borders other country, find distance
                 if (borders.contains(cca)){
-                    System.out.println("found it");
+                    //System.out.println("found it");
                     Vector2 pos = ((Country) countries.get(country)).getPos();
                     countries.setEdge(country, i, Countries.dist2coords(curCountry.getPos(), pos));
                     countries.setEdge(i, country, Countries.dist2coords(curCountry.getPos(), pos));
@@ -73,33 +72,33 @@ public class Game
     //starting a new game -> getting the number of players
     public void newGame() throws java.io.IOException {
         Ui.clear();
-        
+
         JComponent[] components = Ui.playerAmountSelect();
         JButton btn = (JButton)components[0];
         JTextField input = (JTextField)components[1];
 
         btn.addActionListener(e -> {
-            String text = input.getText();
-            System.out.println("number of players: " + text);
-            numberOfPlayers = 1;
+                String text = input.getText();
+                System.out.println("number of players: " + text);
+                numberOfPlayers = 1;
 
-            try{
-                numberOfPlayers = Integer.parseInt(text);
-            }
-            catch(NumberFormatException ignored){
-            }
+                try{
+                    numberOfPlayers = Integer.parseInt(text);
+                }
+                catch(NumberFormatException ignored){
+                }
 
-            turn = 0;
-            round = 0;
+                turn = 0;
+                round = 0;
 
-            playerIn = new LinkedList();
-            for(int i = 0; i < numberOfPlayers; i++){
-                playerIn.add(true);
-            }
+                playerIn = new LinkedList();
+                for(int i = 0; i < numberOfPlayers; i++){
+                    playerIn.add(true);
+                }
 
-            reset();
-            game();
-        });
+                reset();
+                game();
+            });
     }
 
     //main game method, called after each event
@@ -107,26 +106,19 @@ public class Game
         System.out.println("game for " + numberOfPlayers + " players: updated frame");
         Ui.clear();
 
-        try
-        {
-            JComponent[] components = Ui.game(guesses, solution, new Vector2(numberOfPlayers, turn + 1), round);
-            JButton btn = (JButton)components[0];
-            JTextField inputField = (JTextField)components[2];
+        JComponent[] components = Ui.game(guesses, solution, new Vector2(numberOfPlayers, turn + 1), round);
+        JButton btn = (JButton)components[0];
+        JTextField inputField = (JTextField)components[2];
 
-            btn.addActionListener(e -> {
+        btn.addActionListener(e -> {
                 String input = inputField.getText().toUpperCase();
 
                 //input country was not found -> start method again
                 if(!countries.contains(input)){
                     game();
-                    try
-                    {
-                        Ui.countryNotFound(input);
-                    }
-                    catch (IOException ioe)
-                    {
-                        ioe.printStackTrace();
-                    }
+
+                    Ui.countryNotFound(input);
+
                     return;
                 }
 
@@ -136,10 +128,10 @@ public class Game
                 }
 
                 right = input.equals(solution.getName());
-                
+
                 if(right){
-                        //System.out.println("> playing congrats sound");
-                        Music.playMusic("music/congrats.wav", false);
+                    //System.out.println("> playing congrats sound");
+                    Music.playMusic("music/congrats.wav", false);
                 }
 
                 if(numberOfPlayers > 1){
@@ -163,81 +155,71 @@ public class Game
                         countries.printMatrix();
                         //System.out.println(country.getId());
                         //System.out.println(distAndSteps.x + " " + distAndSteps.y);
-                        
+
                         guesses.add(new Guess(input, (int)distAndSteps.x, (int)distAndSteps.y));
                         game();
 
                         //max guesses
                         if(guesses.size() == Math.max((6 - round), 1)){
-                            try
-                            {
-                                Ui.playerLost(turn);
-                                playerIn.set(turn, false);
-                                new java.util.Timer().schedule(
-                                    new java.util.TimerTask() {
-                                        @Override
-                                        public void run() {
-                                            //checks if there are more than 1 player still in game
-                                            int index = -1;
-                                            int count = 0;
-                                            for(int i = 0; i < numberOfPlayers; i++){
-                                                if((boolean)playerIn.get(i)){
-                                                    index = i;
-                                                    count++;
-                                                }
-                                            }
 
-                                            if(count != 0){
-                                                //find the next player who is still in game
-                                                do{
-                                                    turn++;
-                                                    if(turn >= numberOfPlayers){
-                                                        turn = 0;
-                                                        round++;
-                                                    }
-                                                }
-                                                while(!(boolean)playerIn.get(turn));
-                                            }
-
-                                            reset();
-                                            right = false;
-                                            guesses = new LinkedList();
-                                            game();
-                                            if(count == 1){
-                                                //only 1 player still in -> player won
-                                                try
-                                                {
-                                                    JButton newGame = (JButton)Ui.playerWon(index)[0];
-                                                    newGame.addActionListener(e1 -> {
-                                                        System.out.println("click");
-                                                        Ui.clear();
-                                                        try
-                                                        {
-                                                            newGame();
-                                                        }
-                                                        catch (IOException ioe)
-                                                        {
-                                                            ioe.printStackTrace();
-                                                        }
-                                                    });
-                                                }
-                                                catch (IOException ioe)
-                                                {
-                                                    ioe.printStackTrace();
-                                                }
-                                            }
-                                            else{
-                                                game();
+                            Ui.playerLost(turn);
+                            playerIn.set(turn, false);
+                            new java.util.Timer().schedule(
+                                new java.util.TimerTask() {
+                                    @Override
+                                    public void run() {
+                                        //checks if there are more than 1 player still in game
+                                        int index = -1;
+                                        int count = 0;
+                                        for(int i = 0; i < numberOfPlayers; i++){
+                                            if((boolean)playerIn.get(i)){
+                                                index = i;
+                                                count++;
                                             }
                                         }
-                                    },
-                                    5000
-                                );
-                            }
-                            catch (IOException ioe)
-                            {
-                                ioe.printStackTrace();
-                            }
+
+                                        if(count != 0){
+                                            //find the next player who is still in game
+                                            do{
+                                                turn++;
+                                                if(turn >= numberOfPlayers){
+                                                    turn = 0;
+                                                    round++;
+                                                }
+                                            }
+                                            while(!(boolean)playerIn.get(turn));
+                                        }
+
+                                        reset();
+                                        right = false;
+                                        guesses = new LinkedList();
+                                        game();
+                                        if(count == 1){
+                                            //only 1 player still in -> player won
+
+                                            JButton newGame = (JButton)Ui.playerWon(index)[0];
+                                            newGame.addActionListener(e1 -> {
+                                                    System.out.println("click");
+                                                    Ui.clear();
+                                                    try
+                                                    {
+                                                        newGame();
+                                                    }
+                                                    catch (IOException ioe)
+                                                    {
+                                                        ioe.printStackTrace();
+                                                    }
+                                                });
+
+                                        }
+                                        else{
+                                            game();
+                                        }
+                                    }
+                                },
+                                5000
+                            );
+
                         }
                     }
                 }
@@ -268,25 +250,21 @@ public class Game
                 }
             });
 
-            JButton giveUpBtn = (JButton)components[1];
-            giveUpBtn.addActionListener(new ActionListener(){
-                    public void actionPerformed(ActionEvent e){
-                        //System.out.println("click");
-                        Ui.clear();
-                        try
-                        {
-                            newGame();
-                        }
-                        catch (java.io.IOException ioe)
-                        {
-                            ioe.printStackTrace();
-                        }
+        JButton giveUpBtn = (JButton)components[1];
+        giveUpBtn.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e){
+                    //System.out.println("click");
+                    Ui.clear();
+                    try
+                    {
+                        newGame();
                     }
-                });
-        }
-        catch (java.io.IOException ioe)
-        {
-            ioe.printStackTrace();
-        }
+                    catch (java.io.IOException ioe)
+                    {
+                        ioe.printStackTrace();
+                    }
+                }
+            });
+
     }
 }

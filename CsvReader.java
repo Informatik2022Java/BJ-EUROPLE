@@ -26,7 +26,7 @@ public class CsvReader
             }
         }
         catch(IOException e){
-            System.out.println(e);
+            e.printStackTrace();
         }
         
         return matrix;
